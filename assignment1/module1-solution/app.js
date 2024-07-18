@@ -11,14 +11,9 @@
     $scope.message = "";
 
     $scope.checkIfTooMuch = function () {
-      if ($scope.input.trim() === "") {
-        $scope.message = "Please enter data first";
-        return;
-      }
+      let array = $scope.input.split(",").filter((meal) => meal.trim() !== "");
 
-      let array = $scope.input.split(",").filter((item) => item.trim() !== "");
-
-      if (array.length === 0) {
+      if (array.length === 0 || $scope.input === "") {
         $scope.message = "Please enter data first";
       } else if (array.length <= 3) {
         $scope.message = "Enjoy!";

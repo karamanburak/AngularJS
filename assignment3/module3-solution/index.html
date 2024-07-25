@@ -1,33 +1,32 @@
 <!doctype html>
-<html lang="en" ng-app="NarrowItDownApp">
+<html ng-app="NarrowItDownApp" lang="en">
 
 <head>
   <title>Narrow Down Your Menu Choice</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles/bootstrap.min.css">
   <link rel="stylesheet" href="styles/styles.css">
-
-</head>
-
-<body>
-  <div class="container" ng-controller="NarrowItDownController as menu">
-    <h1>Narrow Down Your Chinese Menu Choice</h1>
-    <div class="form">
-      <div class="form-group">
-        <input type="text" ng-model="menu.searchTerm" placeholder="search term" class="form-control">
-      </div>
-      <div class="form-group narrow-button">
-        <button ng-click="menu.getMatchedMenuItems();" class="btn btn-primary">Narrow It Down For Me!</button>
-      </div>
-    </div>
-
-    <div ng-if="menu.error" class="alert alert-warning ">{{ menu.error }}</div>
-    <div ng-if="menu.found.length != 0" class="tableView">
-      <found-items items="menu.found" on-remove="menu.removeItem(index)"></found-items>
-    </div>
-  </div>
   <script src="angular.min.js"></script>
   <script src="app.js"></script>
+</head>
+
+<body ng-controller='NarrowItDownController as narrowCtrl'>
+  <div class="container">
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
+    <hr />
+    <div class="form-group">
+      <input ng-model="narrowCtrl.searchTerm" type="text" placeholder="Enter : Noodle, Egg, Chow Mein, etc"
+        class="form-control">
+    </div>
+    <div class="form-group narrow-button">
+      <button ng-click="narrowCtrl.search()" class="btn btn-success">Narrow It Down For Me!</button>
+    </div>
+  </div>
+
+  <div class="container sp-card">
+    <found-items items="narrowCtrl.found" on-remove="narrowCtrl.remove(index)">
+    </found-items>
+  </div>
 </body>
 
 </html>

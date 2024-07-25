@@ -8,12 +8,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="item in list.items">
+        <tr ng-repeat="item in items">
             <td>{{ item.short_name }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.description }}</td>
-            <td><button ng-click="list.onRemove({ index: $index });" class="btn btn-danger">Don't want this
+            <td><button ng-click="onRemove({ index: $index });" class="btn btn-danger">Don't want this
                     one!</button></td>
         </tr>
     </tbody>
 </table>
+<div class="error" ng-hide="items.length">Nothing found</div>
